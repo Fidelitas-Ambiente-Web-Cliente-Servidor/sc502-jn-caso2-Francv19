@@ -40,7 +40,7 @@ class TallerController
     
     public function solicitar()
 {
-    header('Content-Type: application/json'); // ✅ IMPORTANTE
+    header('Content-Type: application/json'); 
 
     if (!isset($_SESSION['id'])) {
         echo json_encode([

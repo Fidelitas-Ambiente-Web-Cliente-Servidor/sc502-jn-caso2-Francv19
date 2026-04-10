@@ -42,6 +42,7 @@ public function aprobar($id) {
     $stmt->bind_param("i", $id);
     return $stmt->execute();
 }
+
 public function getPendientes() {
     $query = "SELECT 
                 s.id AS id,
@@ -62,6 +63,7 @@ public function getPendientes() {
     }
     return $data;
 }
+
 public function getById($id) {
     $query = "SELECT * FROM solicitudes WHERE id = ?";
     $stmt = $this->conn->prepare($query);
