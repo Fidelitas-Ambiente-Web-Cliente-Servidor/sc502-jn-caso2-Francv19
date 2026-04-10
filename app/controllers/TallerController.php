@@ -39,14 +39,48 @@ class TallerController
     }
     
     public function solicitar()
-    {
-        if (!isset($_SESSION['id'])) {
-            echo json_encode(['success' => false, 'error' => 'Debes iniciar sesión']);
-            return;
-        }
-        
-        $tallerId = $_POST['taller_id'] ?? 0;
-        $usuarioId = $_SESSION['id'];
+{
+    header('Content-Type: application/json'); // ✅ IMPORTANTE
 
+    if (!isset($_SESSION['id'])) {
+        echo json_encode([
+            'response' => "01",
+            'message' => 'Debes iniciar sesión'
+        ]);
+        exit;
     }
+
+    $tallerId = $_POST['taller_id'] ?? 0;
+    $usuarioId = $_SESSION['id'];
+
+    $taller = $this->tallerModel->getById($tallerId);
+
+    if (!$taller || $taller['cupo_disponible'] <= 0) {
+        echo json_encode([
+            'response' => "01",
+            'message' => 'No hay cupo disponible'
+        ]);
+        exit;
+    }
+
+    if ($this->solicitudModel->crear($tallerId, $usuarioId)) {
+
+       
+        $this->tallerModel->descontarCupo($tallerId);
+
+        echo json_encode([
+            'response' => "00",
+            'message' => "Solicitud enviada correctamente"
+        ]);
+
+    } else {
+        echo json_encode([
+            'response' => "01",
+            'message' => "Ya tienes una solicitud"
+        ]);
+    }
+
+    exit;
+}
+
 }

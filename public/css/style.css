@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #dfe1f3;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 🔥 alinea vertical */
+    background: #333;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+nav a {
+    color: white;
+    margin-right: 15px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.btn-logout {
+    background: rgba(23, 26, 151, 0.747);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+button {
+    padding: 6px 10px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+button.aprobar {
+    background: rgb(3, 97, 3);
+    color: white;
+}
+
+button.rechazar {
+    background: rgb(134, 16, 16);
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgb(247, 236, 236);
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.loader {
+    text-align: center;
+}

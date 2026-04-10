@@ -14,18 +14,19 @@ $page = $_GET['page'] ?? 'login';
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     // Obtener listado de talleres
-    if ($_GET['option'] ?? "" == "talleres_json") {
-        $taller = new TallerController();
-        $taller->getTalleresJson();
-        exit;
-    }
+    if (isset($_GET['option']) && $_GET['option'] == "talleres_json") {
+    $taller = new TallerController();
+    $taller->getTalleresJson();
+    exit;
+}
 
     // Obtener solicitudes pendientes
-    if ($_GET['option'] ?? "" == "solicitudes_json") {
-        $admin = new AdminController();
-        //$admin->getSolicitudesJson();
-        exit;
-    }
+    if (isset($_GET['option']) && $_GET['option'] == "solicitudes_json") {
+    $admin = new AdminController();
+    $admin->getSolicitudesJson();
+    exit;
+}
+
 }
 
 // ========== RUTAS FORMULARIO POST ==========
@@ -68,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+
 // ========== RUTAS DE VISTAS ==========
 switch ($page) {
 
@@ -94,4 +96,6 @@ switch ($page) {
         $auth = new UserController();
         $auth->showLogin();
         break;
-}
+   }
+  
+
